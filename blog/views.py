@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 # this login required decorator is to not allow to any
 # view without authenticating
 @login_required(login_url="login/")
+def home(request):
+	return render(request,"home.html")
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'post_list.html', {'posts': posts})
